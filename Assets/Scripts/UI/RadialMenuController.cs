@@ -103,14 +103,22 @@ public class RadialMenuController : MonoBehaviour
         unactivate();
     }
 
+<<<<<<< HEAD
     public void selectTurret(int ind)
+=======
+    public void selectTurret(int ind) 
+>>>>>>> 781203a1a01aadc99cc82ae7560f4d7f97ae8b19
     {
         turretToBuild = turrets[ind];
         currentCost = turrets[ind].GetComponent<TurretData>().getCost();
         buildButtonText.text = turrets[ind].GetComponent<TurretData>().getCost().ToString();
     }
 
+<<<<<<< HEAD
     public void addButton(int cost, Sprite sprite, GameObject turret)
+=======
+    public void addButton(int cost, Sprite sprite, GameObject turret) 
+>>>>>>> 781203a1a01aadc99cc82ae7560f4d7f97ae8b19
     {
         GameObject newButton = Instantiate(radialButton);
         newButton.transform.SetParent(buttonParent.transform, false);
@@ -122,17 +130,29 @@ public class RadialMenuController : MonoBehaviour
         turrets.Add(turret);
 
         //update button positions
+<<<<<<< HEAD
         float angleIncrement = 2 * Mathf.PI / buttons.Count;
         float angleCount = 0;
         foreach (GameObject button in buttons)
         {
             button.GetComponent<RectTransform>().localPosition = new Vector3(Mathf.Sin(angleCount) * 35, Mathf.Cos(angleCount) * 35, 0);
+=======
+        float angleIncrement = 2*Mathf.PI / buttons.Count;
+        float angleCount = 0;
+        foreach (GameObject button in buttons) 
+        {
+            button.GetComponent<RectTransform>().localPosition = new Vector3(Mathf.Sin(angleCount) * 35, Mathf.Cos(angleCount) *35, 0);
+>>>>>>> 781203a1a01aadc99cc82ae7560f4d7f97ae8b19
             button.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 1);
             angleCount += angleIncrement;
         }
     }
 
+<<<<<<< HEAD
     public void buttonCall(int pos)
+=======
+    public void buttonCall(int pos) 
+>>>>>>> 781203a1a01aadc99cc82ae7560f4d7f97ae8b19
     {
         selectTurret(pos);
     }

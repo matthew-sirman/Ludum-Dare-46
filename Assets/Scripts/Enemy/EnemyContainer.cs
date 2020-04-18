@@ -25,9 +25,6 @@ public class EnemyContainer : MonoBehaviour {
         target = GameObject.FindWithTag("Target");
         enemies = new List<GameObject>();
         spawnQueue = new Queue<EnemyType>();
-        spawnQueue.Enqueue(EnemyType.basic);
-        spawnQueue.Enqueue(EnemyType.basic);
-        spawnQueue.Enqueue(EnemyType.basic);
     }
 
     void instantiateEnemy(EnemyType type) {
@@ -42,7 +39,7 @@ public class EnemyContainer : MonoBehaviour {
         enemies.Remove(enemy);
         nActiveEnemies--;
         if (nActiveEnemies == 0) {
-
+            waveManager.notifyWaveFinished();
         }
     }
 
@@ -54,6 +51,11 @@ public class EnemyContainer : MonoBehaviour {
         if (spawnQueue.Count == 0) {
             spawnWave = false;
         }
+    }
+
+    public void setSpawnQueue(Queue<EnemyType> q) {
+        spawnQueue = q;
+        spawnWave = true;
     }
 
     void Update() {

@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _equipped = Instantiate(weapons[startWeaponIndex], rightHandHandle.transform, true);
+        _equipped = Instantiate(weapons[startWeaponIndex], rightHandHandle.transform);
     }
 
     // Update is called once per frame

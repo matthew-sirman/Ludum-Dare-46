@@ -4,11 +4,11 @@ public class PlayerController : MonoBehaviour
 {
     public float maxHealth;
     
-    public float movementSpeed = 15f;
-    public float accelerationRate = 1f;
-    public float mouseSensitivity = 30f;
-    public float jumpAmount = 10f;
-    public float jumpControlFactor = 0.1f;
+    public float movementSpeed = 500f;
+    public float accelerationRate = 0.2f;
+    public float mouseSensitivity = 5f;
+    public float jumpAmount = 6f;
+    public float jumpControlFactor = 1f;
     public Rigidbody playerRigidbody;
     public Camera playerCamera;
 
@@ -17,10 +17,7 @@ public class PlayerController : MonoBehaviour
     private const float MinY = -90f;
     private const float MaxY = 90f;
 
-    private const float MoveThreshold = 0.05f;
-
-    private Vector2 _targetMoveDirection;
-    private Vector3 _movementDir;
+    private Vector3 _moveDir;
     private Vector2 _mousePos;
 
     private bool _isJumping = false;
@@ -39,19 +36,16 @@ public class PlayerController : MonoBehaviour
     {
         if (!_movementLocked)
         {
-            _targetMoveDirection.x = Input.GetAxisRaw("Horizontal");
-            _targetMoveDirection.y = Input.GetAxisRaw("Vertical");
-            if (_targetMoveDirection.sqrMagnitude > 1)
-            {
-                _targetMoveDirection.Normalize();
-            }
+            _moveDir.x = Input.GetAxisRaw("Horizontal");
+            _moveDir.y = Input.GetAxisRaw("Vertical");
+            _moveDir.Normalize();
             
             _mousePos.x += Input.GetAxis("Mouse X") * mouseSensitivity + MaxX - MinX;
             _mousePos.y -= Input.GetAxis("Mouse Y") * mouseSensitivity;
         }
         else
         {
-            _targetMoveDirection = Vector2.zero;
+            _moveDir = Vector2.zero;
         }
 
         _mousePos.x %= MaxX - MinX;
@@ -72,28 +66,19 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         var t = transform;
-
-        Vector3 targetDir = t.forward * _targetMoveDirection.y + t.right * _targetMoveDirection.x;
-        Vector3 delta = targetDir - _movementDir;
-        float targetDist = delta.magnitude;
-        if (!Mathf.Approximately(targetDist, 0f))
+        float a = -Mathf.Deg2Rad * t.eulerAngles.y;
+        float s = Mathf.Sin(a);
+        float c = Mathf.Cos(a);
+        Vector2 m = new Vector2(
+            _moveDir.x * c - _moveDir.y * s,
+            _moveDir.x * s + _moveDir.y * c
+            ) * (movementSpeed * Time.fixedDeltaTime);
+        float accelerationAmount = accelerationRate;
+        if (_isJumping)
         {
-            float accelerationAmount = accelerationRate;
-            if (_isJumping)
-            {
-                accelerationAmount *= jumpControlFactor;
-            }
-        
-            delta /= targetDist;
-            _movementDir += delta * Mathf.Min(accelerationAmount, targetDist);
-
+            accelerationAmount *= jumpControlFactor;
         }
-
-        if (_movementDir.sqrMagnitude >= MoveThreshold)
-        {
-            t.position += _movementDir * (movementSpeed * Time.fixedDeltaTime);
-        }
-
+        playerRigidbody.velocity = new Vector3(m.x, playerRigidbody.velocity.y, m.y);
         t.rotation = Quaternion.Euler(0, _mousePos.x, 0f);
         playerCamera.transform.localRotation = Quaternion.Euler(_mousePos.y, 0f, 0f);
 

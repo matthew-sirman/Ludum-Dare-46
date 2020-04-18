@@ -335,9 +335,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandHandle: {fileID: 6295040961364704140}
   leftHandHandle: {fileID: 4554731166024747046}
+  bulletSpawnPoint: {fileID: 6773073692738506444}
   weapons:
   - {fileID: 1756094085205502455, guid: 2dac372c4f7095041be2b9c1fcdc8632, type: 3}
   startWeaponIndex: 0
+  playerAnimator: {fileID: 4375273587129788351}
 --- !u!95 &4375273587129788351
 Animator:
   serializedVersion: 3
@@ -347,8 +349,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455823114022205453}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: c4b0b913f1e6e1d4ba0060b82f3b17e5, type: 3}
+  m_Controller: {fileID: 9100000, guid: 8b01a6327a0c395489b48d0c5d781392, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

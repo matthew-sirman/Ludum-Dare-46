@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         _isJumping = !Mathf.Approximately(playerRigidbody.velocity.y, 0.0f);
 
-        if (Input.GetButton("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
             _movementLocked = !_movementLocked;
         }

@@ -8,6 +8,7 @@ public class PlayerUIController : MonoBehaviour
     public Text ammoInfoText;
     public Text moneyText;
     public Text reloadWarningText;
+    public Text nextWaveText;
 
     public static PlayerUIController instance
     {

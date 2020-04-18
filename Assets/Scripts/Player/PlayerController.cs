@@ -33,17 +33,21 @@ namespace Player
 
         void Update()
         {
-            _targetMoveDirection.x = Input.GetAxisRaw("Horizontal");
-            _targetMoveDirection.y = Input.GetAxisRaw("Vertical");
-            if (_targetMoveDirection.sqrMagnitude > 1)
-            {
-                _targetMoveDirection.Normalize();
-            }
-
             if (!_movementLocked)
             {
+                _targetMoveDirection.x = Input.GetAxisRaw("Horizontal");
+                _targetMoveDirection.y = Input.GetAxisRaw("Vertical");
+                if (_targetMoveDirection.sqrMagnitude > 1)
+                {
+                    _targetMoveDirection.Normalize();
+                }
+                
                 _mousePos.x += Input.GetAxis("Mouse X") * mouseSensitivity + MaxX - MinX;
                 _mousePos.y -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+            }
+            else
+            {
+                _targetMoveDirection = Vector2.zero;
             }
 
             _mousePos.x %= MaxX - MinX;

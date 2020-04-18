@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerUIController : MonoBehaviour
 {
     public Text ammoInfoText;
+    public Text reloadWarningText;
 
     public static PlayerUIController instance
     {

@@ -23,6 +23,8 @@ namespace Player
 
         private bool _isJumping = false;
         private bool _pressedJump = false;
+
+        private bool _movementLocked = false;
     
         void Start()
         {
@@ -38,8 +40,11 @@ namespace Player
                 _targetMoveDirection.Normalize();
             }
 
-            _mousePos.x += Input.GetAxis("Mouse X") * mouseSensitivity + MaxX - MinX;
-            _mousePos.y -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+            if (!_movementLocked)
+            {
+                _mousePos.x += Input.GetAxis("Mouse X") * mouseSensitivity + MaxX - MinX;
+                _mousePos.y -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+            }
 
             _mousePos.x %= MaxX - MinX;
             _mousePos.x += MinX;
@@ -49,6 +54,11 @@ namespace Player
             _pressedJump = Input.GetButton("Jump");
 
             _isJumping = !Mathf.Approximately(playerRigidbody.velocity.y, 0.0f);
+
+            if (Input.GetButton("Cancel"))
+            {
+                _movementLocked = !_movementLocked;
+            }
         }
 
         private void FixedUpdate()
@@ -91,6 +101,16 @@ namespace Player
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+
+        public void LockMovement()
+        {
+            _movementLocked = true;
+        }
+
+        public void UnlockMovement()
+        {
+            _movementLocked = false;
         }
     }
 }

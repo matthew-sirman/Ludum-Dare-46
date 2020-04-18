@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyContainer : MonoBehaviour
-{
+public class EnemyContainer : MonoBehaviour {
     private List<GameObject> enemies;
     public Vector3 target;
     private Vector3 spawnPoint;
@@ -14,8 +13,7 @@ public class EnemyContainer : MonoBehaviour
     private float lastSpawnTime;
     private bool spawnWave;
 
-    void Start()
-    {
+    void Start() {
         spawnInterval = 2.0f;
         lastSpawnTime = -spawnInterval;
         spawnWave = true;
@@ -32,6 +30,11 @@ public class EnemyContainer : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
         enemy.transform.SetParent(transform, false);
         enemy.GetComponent<Enemy>().setParent(this);
+        enemies.Add(enemy);
+    }
+
+    public void removeEnemy(GameObject enemy) {
+        enemies.Remove(enemy);
     }
 
     void spawnEnemiesInQueue() {
@@ -44,8 +47,7 @@ public class EnemyContainer : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    void Update() {
         if (spawnWave && spawnQueue.Count > 0) {
             spawnEnemiesInQueue();
         }

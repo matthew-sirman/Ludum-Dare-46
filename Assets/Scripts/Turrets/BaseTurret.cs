@@ -36,23 +36,18 @@ public class BaseTurret : MonoBehaviour
             GameObject closestEnemy = findClosestEnemy();
 
             Vector3 targetDirection = closestEnemy.transform.position - transform.position;
-            Debug.Log(targetDirection);
-            float yVal = Mathf.Asin(targetDirection.x/targetDirection.z);
+            Vector2 dist = new Vector2(targetDirection.x, targetDirection.z);
+            Vector2 forw = new Vector2(transform.forward.x, transform.forward.z);
+            int mult = -1;
+            if (dist.x > 0) 
+            {
+                mult = 1;
+            }
+            float absA = Mathf.Sqrt((dist.x * dist.x) + (dist.y * dist.y));
+            float absB = Mathf.Sqrt((forw.x * forw.x) + (forw.y * forw.y));
+            float yVal = Mathf.Acos(Vector2.Dot(dist, forw) / (absA * absB)) * 180 / Mathf.PI;
             Debug.Log(yVal);
-            turretHead.transform.rotation = Quaternion.Euler(-90, yVal, 0);
-
-            /*// Determine which direction to rotate towards
-            Vector3 targetDirection = closestEnemy.transform.position - transform.position;
-
-            // The step size is equal to speed times frame time.
-            float singleStep = rotateSpeed * Time.deltaTime;
-
-            // Rotate the forward vector towards the target direction by one step
-            Vector3 newDirection = Vector3.RotateTowards(turretHead.transform.forward, targetDirection, singleStep, 0.0f);
-
-            // Calculate a rotation a step closer to the target and applies rotation to this object
-            turretHead.transform.rotation = Quaternion.LookRotation(newDirection);
-            //turretHead.transform.rotation = Quaternion.Euler(0, turretHead.transform.rotation.y, turretHead.transform.rotation.z);*/
+            turretHead.transform.rotation = Quaternion.Euler(-90, mult*yVal, 0);
         }
     }
 

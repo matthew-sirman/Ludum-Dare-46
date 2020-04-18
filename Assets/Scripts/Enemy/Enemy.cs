@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public float attackDamage;
     private float lastAttackTime;
     public float attackSpeed;
+    public EnemyType type;
 
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -34,8 +35,9 @@ public class Enemy : MonoBehaviour
         lastAttackTime = Time.time;
     }
 
-    public void setParent(EnemyContainer parent) {
+    public void init(EnemyContainer parent, EnemyType type) {
         this.parent = parent;
+        this.type = type;
     }
 
     public void damage(float damage) {
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void kill() {
+        player.GetComponent<PlayerController>().notifyEnemyKilled(type);
         parent.removeEnemy(gameObject);
         Destroy(gameObject);
     }

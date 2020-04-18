@@ -15,7 +15,6 @@ public class MoneyManager : MonoBehaviour
 
     void Start() {
         moneyText = PlayerUIController.instance.moneyText;
-        Debug.Log(moneyText);
     }
 
     public int getMoney() 

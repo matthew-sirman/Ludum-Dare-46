@@ -1,8 +1,14 @@
 fileFormatVersion: 2
-guid: 6dcccf8871b94c64c9c86390d094b0fb
+guid: c4b0b913f1e6e1d4ba0060b82f3b17e5
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -604569089228469518
+    second: ArmRig|PistolIdle
+  - first:
+      74: -275676310610245142
+    second: ArmRig|PistolShoot
   externalObjects: {}
   materials:
     materialImportMode: 1

@@ -25,7 +25,6 @@ public class Weapon : MonoBehaviour
 
     private int _currentAmmo;
     private float _lastFired;
-    private float _reloadStarted;
     private bool _reloading;
 
     private Text reloadWarningText;
@@ -50,7 +49,7 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0)
+                if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0 && !_reloading)
                 {
                     FireBullet();
                 }
@@ -60,14 +59,14 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0)
+                if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0 && !_reloading)
                 {
                     FireBullet();
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !_reloading)
         {
             if (_currentAmmo < clipSize)
             {
@@ -75,7 +74,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        if (_currentAmmo == 0)
+        if (_currentAmmo == 0 && !_reloading)
         {
             StartCoroutine(ReloadGun());
         }
@@ -97,7 +96,6 @@ public class Weapon : MonoBehaviour
         
         if (Physics.Raycast(bulletRay, out hit))
         {
-            Debug.Log(hit.transform.tag);
             if (!hit.transform.CompareTag("Enemy")) {
                 return;
             }
@@ -117,9 +115,11 @@ public class Weapon : MonoBehaviour
     private IEnumerator ReloadGun()
     {
         playerAnimator.SetTrigger("Reload");
+        _reloading = true;
         
         yield return new WaitForSeconds(reloadTime);
 
         _currentAmmo = clipSize;
+        _reloading = false;
     }
 }

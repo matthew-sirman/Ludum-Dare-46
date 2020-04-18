@@ -4906,4 +4906,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxEffectiveDistance: 100
+  clipSize: 12
+  reloadTime: 2
+  fireRate: 4
   bulletExplosion: {fileID: 1833684418412687116}
+  ammoInfoText: {fileID: 0}

@@ -27,11 +27,17 @@ public class Weapon : MonoBehaviour
     private float _reloadStarted;
     private bool _reloading;
 
+    private Text reloadWarningText;
+
+    private const float ReloadWarningPercent = 0.25f;
+
     // Start is called before the first frame update
     void Start()
     {
         _lastFired = Time.time;
         _currentAmmo = clipSize;
+
+        reloadWarningText = PlayerUIController.instance.reloadWarningText;
     }
 
     // Update is called once per frame
@@ -58,6 +64,11 @@ public class Weapon : MonoBehaviour
         if (_currentAmmo == 0)
         {
             StartCoroutine(ReloadGun());
+        }
+
+        if (clipSize * ReloadWarningPercent > _currentAmmo)
+        {
+            
         }
     }
 

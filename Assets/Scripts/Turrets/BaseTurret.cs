@@ -12,6 +12,7 @@ public class BaseTurret : MonoBehaviour
     public int cooldown;
     public float rotateSpeed;
     GameObject turretHead;
+    float xRot;
 
 
     // Start is called before the first frame update
@@ -24,19 +25,38 @@ public class BaseTurret : MonoBehaviour
     void Update()
     {
         //Is this needed when this will be an inherited class?
-        findEnemies();
-        aimTurretAtEnemies();
+        
     }
 
-    void aimTurretAtEnemies() 
+    public void aimTurretAtEnemies() 
     {
-        GameObject closestEnemy = findClosestEnemy();
-        Vector3 targetDirection = (closestEnemy.transform.position - this.transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        turretHead.transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+        findEnemies();
+        if (enemies.Count > 0)
+        {
+            GameObject closestEnemy = findClosestEnemy();
+
+            Vector3 targetDirection = closestEnemy.transform.position - transform.position;
+            Debug.Log(targetDirection);
+            float yVal = Mathf.Asin(targetDirection.x/targetDirection.z);
+            Debug.Log(yVal);
+            turretHead.transform.rotation = Quaternion.Euler(-90, yVal, 0);
+
+            /*// Determine which direction to rotate towards
+            Vector3 targetDirection = closestEnemy.transform.position - transform.position;
+
+            // The step size is equal to speed times frame time.
+            float singleStep = rotateSpeed * Time.deltaTime;
+
+            // Rotate the forward vector towards the target direction by one step
+            Vector3 newDirection = Vector3.RotateTowards(turretHead.transform.forward, targetDirection, singleStep, 0.0f);
+
+            // Calculate a rotation a step closer to the target and applies rotation to this object
+            turretHead.transform.rotation = Quaternion.LookRotation(newDirection);
+            //turretHead.transform.rotation = Quaternion.Euler(0, turretHead.transform.rotation.y, turretHead.transform.rotation.z);*/
+        }
     }
 
-    void findEnemies() 
+    public void findEnemies() 
     {
         enemies = new List<GameObject>();
         GameObject[] enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
@@ -71,5 +91,6 @@ public class BaseTurret : MonoBehaviour
     public void setTurret(GameObject head)
     {
         turretHead = head;
+        xRot = turretHead.transform.rotation.x;
     }
 }

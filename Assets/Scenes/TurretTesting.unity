@@ -778,7 +778,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65bfc6b72795fcc449b26d593f7a3b95, type: 2}
+  - {fileID: 2100000, guid: d0a420bb1d348824eb3c24d88f337919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -872,7 +872,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65bfc6b72795fcc449b26d593f7a3b95, type: 2}
+  - {fileID: 2100000, guid: d0a420bb1d348824eb3c24d88f337919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1492,7 +1492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 89e5db062920aae468affb44bcd099e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03727f673aa74444f932f5710a19421d, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2527,7 +2527,7 @@ MonoBehaviour:
   button2: {fileID: 3053019}
   button3: {fileID: 1780005479}
   button4: {fileID: 1612858503}
-  buildButtonText: {fileID: 0}
+  buildButtonText: {fileID: 1598902081}
 --- !u!4 &1666367493
 Transform:
   m_ObjectHideFlags: 0

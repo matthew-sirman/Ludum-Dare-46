@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private const float MinY = -90f;
     private const float MaxY = 90f;
 
+    private const float MoveThreshold = 0.01f;
+
     private Vector2 _targetMoveDirection;
     private Vector3 _movementDir;
     private Vector2 _mousePos;
@@ -80,6 +82,11 @@ public class PlayerController : MonoBehaviour
         
             delta /= targetDist;
             _movementDir += delta * Mathf.Min(accelerationAmount, targetDist);
+
+            if (_movementDir.sqrMagnitude < MoveThreshold)
+            {
+                _movementDir = Vector3.zero;
+            }
         }
 
         t.position += _movementDir * (movementSpeed * Time.fixedDeltaTime);

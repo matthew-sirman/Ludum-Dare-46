@@ -30,7 +30,7 @@ public class WeaponController : MonoBehaviour
 
     public void EquipWeapon(int weaponIndex)
     {
-        if (_equipped != null)
+        if (!(_equipped is null))
         {
             GameObject.Destroy(_equipped);
         }

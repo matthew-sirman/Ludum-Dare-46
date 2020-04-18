@@ -5,6 +5,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float baseDamage;
+    public AnimationCurve falloffCurve = AnimationCurve.Linear(0f, 1f, 1f, 0f);
+    public float maxEffectiveDistance = 100f;
     
     internal Animator playerAnimator;
     internal GameObject bulletSpawn;
@@ -33,7 +35,22 @@ public class Weapon : MonoBehaviour
         
         if (Physics.Raycast(bulletRay, out hit))
         {
-            Debug.Log(hit.distance + ", " + hit.collider.name);
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy is null)
+            {
+                return;
+            }
+
+            float distancePercent = hit.distance / maxEffectiveDistance;
+
+            if (distancePercent >= 1)
+            {
+                return;
+            }
+            
+            float damage = baseDamage * falloffCurve.Evaluate(distancePercent);
+            
+            Debug.Log(damage);
         }
     }
 }

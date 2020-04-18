@@ -9,12 +9,12 @@ public class TurretData : MonoBehaviour
     public int cost;
     public Sprite sprite;
 
-    public int getCost() 
+    public int getCost()
     {
         return cost;
     }
 
-    public Sprite getSprite() 
+    public Sprite getSprite()
     {
         return sprite;
     }

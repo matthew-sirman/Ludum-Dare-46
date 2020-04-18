@@ -6,17 +6,17 @@ public class TurretManager : MonoBehaviour
 {
     public GameObject currentlyBuilding;
 
-    public void setBuilding(GameObject turret) 
+    public void setBuilding(GameObject turret)
     {
         currentlyBuilding = turret;
     }
 
-    public void clearBuilding() 
+    public void clearBuilding()
     {
         currentlyBuilding = null;
     }
 
-    public GameObject getBuilding() 
+    public GameObject getBuilding()
     {
         return currentlyBuilding;
     }

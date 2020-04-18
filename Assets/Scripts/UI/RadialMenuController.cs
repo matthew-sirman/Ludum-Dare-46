@@ -10,23 +10,23 @@ public class RadialMenuController : MonoBehaviour
 
     public GameObject radialMenu;
 
-    public GameObject[] turretList;
-
-    public Vector2 moveInput;
-
     TurretManager manager;
 
-    public GameObject turretToBuild;
+    GameObject turretToBuild;
+    int currentCost;
 
-    public GameObject turret1;
-    public GameObject turret2;
-    public GameObject turret3;
-    public GameObject turret4;
+    //The turrets that can be built as is on the radial menu
+    GameObject turret1;
+    GameObject turret2;
+    GameObject turret3;
+    GameObject turret4;
 
+    //The buttons on the radial menu
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
     public GameObject button4;
+    public Text buildButtonText;
 
 
     // Start is called before the first frame update
@@ -40,9 +40,6 @@ public class RadialMenuController : MonoBehaviour
     {
         if (radialMenu.activeInHierarchy) 
         {
-            moveInput.x = Input.mousePosition.x;
-            moveInput.y = Input.mousePosition.y;
-
             if (Input.GetButton("Cancel"))
             {
                 unactivate();
@@ -83,6 +80,8 @@ public class RadialMenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         p.GetComponent<PlayerController>().UnlockMovement();
+        buildButtonText.text = "0";
+        turretToBuild = null;
     }
 
     //CONSTRUCT THE SELECTED TURRET
@@ -104,6 +103,8 @@ public class RadialMenuController : MonoBehaviour
         if (turret1 != null) 
         {
             turretToBuild = turret1;
+            currentCost = turret1.GetComponent<TurretData>().getCost();
+            buildButtonText.text = turret1.GetComponent<TurretData>().getCost().ToString();
         }
     }
 
@@ -112,6 +113,8 @@ public class RadialMenuController : MonoBehaviour
         if (turret2 != null)
         {
             turretToBuild = turret2;
+            currentCost = turret2.GetComponent<TurretData>().getCost();
+            buildButtonText.text = turret2.GetComponent<TurretData>().getCost().ToString();
         }
     }
 
@@ -120,6 +123,8 @@ public class RadialMenuController : MonoBehaviour
         if (turret3 != null)
         {
             turretToBuild = turret3;
+            currentCost = turret3.GetComponent<TurretData>().getCost();
+            buildButtonText.text = turret3.GetComponent<TurretData>().getCost().ToString();
         }
     }
 
@@ -128,6 +133,8 @@ public class RadialMenuController : MonoBehaviour
         if (turret4 != null)
         {
             turretToBuild = turret4;
+            currentCost = turret4.GetComponent<TurretData>().getCost();
+            buildButtonText.text = turret4.GetComponent<TurretData>().getCost().ToString();
         }
     }
 
@@ -149,5 +156,25 @@ public class RadialMenuController : MonoBehaviour
     public void setTurret4(GameObject turret)
     {
         turret4 = turret;
+    }
+
+    public GameObject getButton1() 
+    {
+        return button1;
+    }
+
+    public GameObject getButton2()
+    {
+        return button2;
+    }
+
+    public GameObject getButton3()
+    {
+        return button3;
+    }
+
+    public GameObject getButton4()
+    {
+        return button4;
     }
 }

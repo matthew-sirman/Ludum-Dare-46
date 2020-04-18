@@ -4,29 +4,7 @@ using UnityEngine;
 
 public class TurretManager : MonoBehaviour
 {
-
-    public List<GameObject> allTurretTypes;
-
-    public List<GameObject> unlockedTurrets;
-
     public GameObject currentlyBuilding;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void unlockTurret(GameObject turret) 
-    {
-        unlockedTurrets.Add(turret);
-    }
 
     public void setBuilding(GameObject turret) 
     {

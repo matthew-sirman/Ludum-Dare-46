@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
     public float baseDamage;
     public AnimationCurve falloffCurve = AnimationCurve.Linear(0f, 1f, 1f, 0f);
     public float maxEffectiveDistance = 100f;
+
+    public ParticleSystem bulletExplosion;
     
     internal Animator playerAnimator;
     internal GameObject bulletSpawn;
@@ -29,6 +31,7 @@ public class Weapon : MonoBehaviour
     private void FireBullet()
     {
         playerAnimator.SetTrigger("Shoot");
+        bulletExplosion.Emit(1);
         
         Ray bulletRay = new Ray(bulletSpawn.transform.position, bulletSpawn.transform.forward);
         RaycastHit hit;

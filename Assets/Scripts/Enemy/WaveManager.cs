@@ -74,7 +74,7 @@ public class WaveManager : MonoBehaviour {
 
     void Update() {
         if (!waveActive) {
-            int t = Time.time - waveEndTime;
+            int t = (int)(Time.time - waveEndTime);
             nextWaveText.text = "Wave " + wave + "\n" + t + " Seconds";
         }
     }

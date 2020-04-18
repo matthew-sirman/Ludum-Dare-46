@@ -8,7 +8,7 @@ public class Heart : MonoBehaviour
     
     void Start()
     {
-        health = 100;
+        health = 100.0f;
     }
 
     public void damage(float damage) {

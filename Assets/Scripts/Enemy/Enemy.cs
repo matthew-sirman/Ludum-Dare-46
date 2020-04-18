@@ -12,21 +12,31 @@ public class Enemy : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private EnemyContainer parent;
 
+    private float health;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = parent.getTargetPos();
+        health = 10.0f;
     }
 
     public void setParent(EnemyContainer parent) {
         this.parent = parent;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void damage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            kill();
+        }
+    }
+
+    private void kill() {
+        parent.removeEnemy(gameObject);
+        Destroy(gameObject);
+    }
+
+    void Update() {
         agent.destination = parent.getTargetPos();
     }
 }

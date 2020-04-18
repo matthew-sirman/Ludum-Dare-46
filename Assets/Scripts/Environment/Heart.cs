@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Heart : MonoBehaviour
 {
-    private int health;
+    private float health;
     
     void Start()
     {
         health = 100;
     }
 
-    public void damage(int damage) {
+    public void damage(float damage) {
         health -= damage;
-        if (health <= 0) {
-            
+        if (health <= 0.0f) {
+
         }
     }
 }

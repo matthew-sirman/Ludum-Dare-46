@@ -329,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f092727032e421545b4a61f6f2819f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 40
   movementSpeed: 500
   accelerationRate: 0.2
   mouseSensitivity: 5
@@ -352,7 +353,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-2199974465980924224
+--- !u!114 &
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,13 +11,20 @@ public class Enemy : MonoBehaviour
     private int id;
     private UnityEngine.AI.NavMeshAgent agent;
     private EnemyContainer parent;
+
+    private bool playerAggro;
+    public float playerAggroDist;
+    public float playerDeAggroDist;
+
     public float maxHealth;
     private float health;
+    private GameObject player;
 
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = parent.getTargetPos();
         health = maxHealth;
+        player = GameObject.FindWithTag("Player");
     }
 
     public void setParent(EnemyContainer parent) {
@@ -31,12 +38,30 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private bool switchPlayerAggro() {
+        if (!playerAggro) {
+            return Vector3.Distance(
+                transform.position, player.transform.position) < playerAggroDist;
+        } else {
+            return Vector3.Distance(
+                transform.position, player.transform.position) > playerDeAggroDist;
+        }
+    }
+
     private void kill() {
         parent.removeEnemy(gameObject);
         Destroy(gameObject);
     }
 
     void Update() {
-        agent.destination = parent.getTargetPos();
+        if (playerAggro) {
+            agent.destination = player.transform.position;
+        }
+        if (switchPlayerAggro()) {
+            playerAggro = !playerAggro;
+            if (!playerAggro) {
+                agent.destination = parent.getTargetPos();
+            }
+        }
     }
 }

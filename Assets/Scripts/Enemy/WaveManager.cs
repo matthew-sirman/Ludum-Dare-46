@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour {
     private List<Dictionary<EnemyType, int>> waveComposition = new List<Dictionary<EnemyType, int>>() {
@@ -19,10 +20,14 @@ public class WaveManager : MonoBehaviour {
     private float waveEndTime;
     private int nActiveSpawners;
     private int wave;
+    private bool waveActive;
+    private Text nextWaveText;
 
     void Start() {
-        waveEndTime = -timeBetweenWaves;
+        waveEndTime = -timeBetweenWaves - 5;
         wave = 0;
+        waveActive = true;
+        nextWaveText = PlayerUIController.instance.nextWaveText;
         spawners = new List<EnemyContainer>();
         foreach (Transform child in transform) {
             spawners.Add(
@@ -47,6 +52,7 @@ public class WaveManager : MonoBehaviour {
 
     private void startBetweenWaveDialog() {
         waveEndTime = Time.time;
+        waveActive = false;
     }
 
     private Queue<EnemyType> generateEnemySequence(int wave) {
@@ -66,6 +72,9 @@ public class WaveManager : MonoBehaviour {
     }
 
     void Update() {
-        
+        if (!waveActive) {
+            int t = Time.time - waveEndTime;
+            nextWaveText.text = "Wave " + wave + "\n" + t + " Seconds";
+        }
     }
 }

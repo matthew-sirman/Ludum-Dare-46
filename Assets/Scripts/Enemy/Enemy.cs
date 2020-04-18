@@ -11,13 +11,13 @@ public class Enemy : MonoBehaviour
     private int id;
     private UnityEngine.AI.NavMeshAgent agent;
     private EnemyContainer parent;
-
+    public float maxHealth;
     private float health;
 
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = parent.getTargetPos();
-        health = 10.0f;
+        health = maxHealth;
     }
 
     public void setParent(EnemyContainer parent) {

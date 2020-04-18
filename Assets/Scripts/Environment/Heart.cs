@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Heart : MonoBehaviour
 {
+    public float maxHealth;
     private float health;
     
     void Start()
     {
-        health = 100.0f;
+        health = maxHealth;
     }
 
     public void damage(float damage) {

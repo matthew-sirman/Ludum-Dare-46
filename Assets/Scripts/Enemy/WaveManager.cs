@@ -24,9 +24,9 @@ public class WaveManager : MonoBehaviour {
     private Text nextWaveText;
 
     void Start() {
-        waveEndTime = -timeBetweenWaves - 5;
+        waveEndTime = -timeBetweenWaves + 5;
         wave = 0;
-        waveActive = true;
+        waveActive = false;
         nextWaveText = PlayerUIController.instance.nextWaveText;
         spawners = new List<EnemyContainer>();
         foreach (Transform child in transform) {
@@ -53,6 +53,11 @@ public class WaveManager : MonoBehaviour {
     private void startBetweenWaveDialog() {
         waveEndTime = Time.time;
         waveActive = false;
+        wave++;
+    }
+
+    private void endBetweenWaveDialog() {
+        waveActive = true;
     }
 
     private Queue<EnemyType> generateEnemySequence(int wave) {
@@ -68,14 +73,14 @@ public class WaveManager : MonoBehaviour {
                 types.Remove(type);
             }
         }
-        
+
         return q;
     }
 
     void Update() {
         if (!waveActive) {
-            int t = Time.time - waveEndTime;
-            nextWaveText.text = "Wave " + wave + "\n" + t + " Seconds";
+            int t = (int)(timeBetweenWaves - Time.time + waveEndTime);
+            nextWaveText.text = "Wave " + (wave + 1) + " in\n" + t + " Seconds";
         }
     }
 }

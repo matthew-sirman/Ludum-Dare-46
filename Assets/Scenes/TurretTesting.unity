@@ -385,6 +385,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &860505213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9116317267471581696, guid: e72d455c95a70ea41ad445aecbd0da54,
+    type: 3}
+  m_PrefabInstance: {fileID: 5949539331501967810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdda0f47939aed48beeec2c196e33bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &869578369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1163,6 +1175,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948453197132270534, guid: 6da86504b6de5c647bf13ed1be0931ad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 860505213}
+    - target: {fileID: 8948453197132270534, guid: 6da86504b6de5c647bf13ed1be0931ad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: buildTurret
       objectReference: {fileID: 0}
     - target: {fileID: 8948453197599478771, guid: 6da86504b6de5c647bf13ed1be0931ad,
         type: 3}

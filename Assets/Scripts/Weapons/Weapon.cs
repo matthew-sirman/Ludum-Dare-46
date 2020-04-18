@@ -38,14 +38,12 @@ public class Weapon : MonoBehaviour
         
         if (Physics.Raycast(bulletRay, out hit))
         {
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            if (enemy is null)
-            {
+            Debug.Log(hit.transform.tag);
+            if (hit.transform.tag != "Enemy") {
                 return;
             }
-
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
             float distancePercent = hit.distance / maxEffectiveDistance;
-
             if (distancePercent >= 1)
             {
                 return;
@@ -54,6 +52,7 @@ public class Weapon : MonoBehaviour
             float damage = baseDamage * falloffCurve.Evaluate(distancePercent);
             
             Debug.Log(damage);
+            enemy.damage(damage);
         }
     }
 }

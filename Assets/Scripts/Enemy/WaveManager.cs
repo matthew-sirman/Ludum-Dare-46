@@ -68,6 +68,7 @@ public class WaveManager : MonoBehaviour {
                 types.Remove(type);
             }
         }
+        
         return q;
     }
 

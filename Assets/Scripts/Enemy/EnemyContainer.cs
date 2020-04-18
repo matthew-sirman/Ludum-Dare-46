@@ -51,6 +51,7 @@ public class EnemyContainer : MonoBehaviour {
         if (spawnQueue.Count == 0) {
             spawnWave = false;
         }
+        
     }
 
     public void setSpawnQueue(Queue<EnemyType> q) {

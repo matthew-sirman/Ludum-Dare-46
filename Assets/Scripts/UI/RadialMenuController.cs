@@ -95,10 +95,19 @@ public class RadialMenuController : MonoBehaviour
     {
         if (turretToBuild != null) 
         {
-            GameObject turret = manager.getBuilding();
-            turret.GetComponent<MeshRenderer>().enabled = false;
-            Destroy(turret.GetComponent<ClickTurretSpot>().getTurret());
-            turret.GetComponent<ClickTurretSpot>().setTurret(Instantiate(turretToBuild, turret.transform.position, Quaternion.identity));
+            MoneyManager mm = FindObjectOfType<MoneyManager>();
+            if (mm.getMoney() >= currentCost)
+            {
+                mm.subtractMoney(currentCost);
+                GameObject turret = manager.getBuilding();
+                turret.GetComponent<MeshRenderer>().enabled = false;
+                Destroy(turret.GetComponent<ClickTurretSpot>().getTurret());
+                turret.GetComponent<ClickTurretSpot>().setTurret(Instantiate(turretToBuild, turret.transform.position, Quaternion.identity));
+            }
+            else 
+            {
+                Debug.Log("NOT ENOUGH MONEY!");
+            }
         }
         unactivate();
     }

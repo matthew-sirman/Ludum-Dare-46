@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private const float MinY = -90f;
     private const float MaxY = 90f;
 
+    private const float MoveThreshold = 0.05f;
+
     private Vector2 _targetMoveDirection;
     private Vector3 _movementDir;
     private Vector2 _mousePos;
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
         _isJumping = !Mathf.Approximately(playerRigidbody.velocity.y, 0.0f);
 
-        if (Input.GetButton("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
             _movementLocked = !_movementLocked;
         }
@@ -80,10 +82,14 @@ public class PlayerController : MonoBehaviour
         
             delta /= targetDist;
             _movementDir += delta * Mathf.Min(accelerationAmount, targetDist);
+
         }
 
-        t.position += _movementDir * (movementSpeed * Time.fixedDeltaTime);
-    
+        if (_movementDir.sqrMagnitude >= MoveThreshold)
+        {
+            t.position += _movementDir * (movementSpeed * Time.fixedDeltaTime);
+        }
+
         t.rotation = Quaternion.Euler(0, _mousePos.x, 0f);
         playerCamera.transform.localRotation = Quaternion.Euler(_mousePos.y, 0f, 0f);
 

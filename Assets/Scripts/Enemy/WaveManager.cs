@@ -33,7 +33,6 @@ public class WaveManager : MonoBehaviour {
             spawners.Add(
                 child.gameObject.GetComponent<EnemyContainer>());
         }
-        startWave();
     }
 
     public void startWave() {
@@ -54,10 +53,12 @@ public class WaveManager : MonoBehaviour {
         waveEndTime = Time.time;
         waveActive = false;
         wave++;
+        nextWaveText.gameObject.SetActive(true);
     }
 
     private void endBetweenWaveDialog() {
         waveActive = true;
+        nextWaveText.gameObject.SetActive(false);
     }
 
     private Queue<EnemyType> generateEnemySequence(int wave) {
@@ -73,7 +74,6 @@ public class WaveManager : MonoBehaviour {
                 types.Remove(type);
             }
         }
-
         return q;
     }
 
@@ -81,6 +81,10 @@ public class WaveManager : MonoBehaviour {
         if (!waveActive) {
             int t = (int)(timeBetweenWaves - Time.time + waveEndTime);
             nextWaveText.text = "Wave " + (wave + 1) + " in\n" + t + " Seconds";
+            if (Time.time > waveEndTime + timeBetweenWaves) {
+                endBetweenWaveDialog();
+                startWave();
+            }
         }
     }
 }

@@ -78,7 +78,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Wave 1
 
-    30 Seconds'
+    0 Seconds'
 --- !u!1 &1579024982811261429
 GameObject:
   m_ObjectHideFlags: 0

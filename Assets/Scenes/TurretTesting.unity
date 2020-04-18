@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 4272293652961097053, guid: b07b8d33863ef0e43b834a651256720f, type: 3}
   button: 2
-  controller: {fileID: 0}
+  img: {fileID: 0}
 --- !u!64 &480492796
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1897,7 +1897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 1579165619543184342, guid: 40541bb588564824cbf111ffb09285c7, type: 3}
   button: 1
-  controller: {fileID: 0}
+  img: {fileID: 0}
 --- !u!64 &1166657846
 MeshCollider:
   m_ObjectHideFlags: 0

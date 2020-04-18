@@ -63,6 +63,7 @@ MonoBehaviour:
   cooldown: 5
   rotateSpeed: 1
   headName: TurretGuns
+  childName: gun_turret
   cooldownTime: 0
 --- !u!65 &3806087583455580611
 BoxCollider:
@@ -158,6 +159,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: gun_turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202316200177208619, guid: 56e216d6fb95cdb4e93c30d7765902e5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.73135376
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202316200177208619, guid: 56e216d6fb95cdb4e93c30d7765902e5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202316200177208619, guid: 56e216d6fb95cdb4e93c30d7765902e5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6819983
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202316200177208619, guid: 56e216d6fb95cdb4e93c30d7765902e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -94
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e216d6fb95cdb4e93c30d7765902e5, type: 3}

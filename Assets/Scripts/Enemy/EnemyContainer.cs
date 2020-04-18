@@ -30,7 +30,7 @@ public class EnemyContainer : MonoBehaviour {
     void instantiateEnemy(EnemyType type) {
         GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         enemy.transform.SetParent(transform);
-        enemy.GetComponent<Enemy>().setParent(this);
+        enemy.GetComponent<Enemy>().init(this, type);
         enemies.Add(enemy);
     }
 

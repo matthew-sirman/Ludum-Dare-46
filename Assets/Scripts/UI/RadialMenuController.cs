@@ -18,6 +18,8 @@ public class RadialMenuController : MonoBehaviour
     TurretManager manager;
 
     GameObject turretToBuild;
+
+    MoneyManager mm;
     int currentCost;
 
     //The turrets that can be built as is on the radial menu
@@ -42,6 +44,7 @@ public class RadialMenuController : MonoBehaviour
         manager = FindObjectOfType<TurretManager>();
         buildButtonText = GameObject.FindGameObjectWithTag("BuildCost").GetComponent<Text>();
         radialMenu.SetActive(false);
+        mm = FindObjectOfType<MoneyManager>();
     }
 
     // Update is called once per frame
@@ -99,11 +102,19 @@ public class RadialMenuController : MonoBehaviour
     {
         if (turretToBuild != null)
         {
-            GameObject turret = manager.getBuilding();
-            Debug.Log(turret.GetComponent<MeshRenderer>());
-            turret.GetComponent<MeshRenderer>().enabled = false;
-            Destroy(turret.GetComponent<ClickTurretSpot>().getTurret());
-            turret.GetComponent<ClickTurretSpot>().setTurret(Instantiate(turretToBuild, turret.transform.position, Quaternion.identity));
+            if (mm.getMoney() >= currentCost)
+            {
+                mm.subtractMoney(currentCost);
+                GameObject turret = manager.getBuilding();
+                Debug.Log(turret.GetComponent<MeshRenderer>());
+                turret.GetComponent<MeshRenderer>().enabled = false;
+                Destroy(turret.GetComponent<ClickTurretSpot>().getTurret());
+                turret.GetComponent<ClickTurretSpot>().setTurret(Instantiate(turretToBuild, turret.transform.position, Quaternion.identity));
+            }
+            else 
+            {
+                Debug.Log("NOT ENOUGH MONEY!");
+            }
         }
         unactivate();
     }

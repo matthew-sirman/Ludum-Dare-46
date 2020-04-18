@@ -7,22 +7,21 @@ public class Blueprint : MonoBehaviour
 {
 
     public GameObject turret;
-    //public int button;
+    public int button;
 
     RadialMenuController controller;
 
-    bool interacted = false;
+    public Image img;
 
     public void Start()
     {
         controller = FindObjectOfType<RadialMenuController>();
     }
 
-    private void doAction()
+    private void OnMouseDown()
     {
-        interacted = true;
         //Set one of the buttons on the radial menu to the weapon in the blueprint
-        /*if (button == 1) {
+        if (button == 1) {
             controller.setTurret1(turret);
             controller.getButton1().GetComponentsInChildren<Image>()[1].sprite = turret.GetComponent<TurretData>().getSprite();
             controller.getButton1().GetComponentInChildren<Text>().text = turret.GetComponentInChildren<TurretData>().getCost().ToString();
@@ -44,15 +43,7 @@ public class Blueprint : MonoBehaviour
             controller.setTurret4(turret);
             controller.getButton4().GetComponentsInChildren<Image>()[1].sprite = turret.GetComponent<TurretData>().getSprite();
             controller.getButton4().GetComponentInChildren<Text>().text = turret.GetComponentInChildren<TurretData>().getCost().ToString();
-        }*/
-        controller.addButton(turret.GetComponentInChildren<TurretData>().getCost(), turret.GetComponent<TurretData>().getSprite(), turret);
-        Debug.Log("YOU HAVE UNLOCKED TURRET " + turret.name);
-    }
-
-    private void OnMouseOver()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && !interacted) {
-            doAction();
         }
+        Debug.Log("YOU HAVE UNLOCKED TURRET " + turret.name);
     }
 }

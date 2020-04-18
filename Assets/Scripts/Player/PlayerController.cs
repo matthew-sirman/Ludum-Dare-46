@@ -2,6 +2,8 @@
 
 public class PlayerController : MonoBehaviour
 {
+    public float maxHealth;
+    
     public float movementSpeed = 500f;
     public float accelerationRate = 0.2f;
     public float mouseSensitivity = 5f;
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private bool _pressedJump = false;
 
     private bool _movementLocked = false;
+
+    private float _currentHealth;
 
     void Start()
     {
@@ -104,5 +108,20 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement()
     {
         _movementLocked = false;
+    }
+
+    public void Damage(float amount)
+    {
+        _currentHealth -= amount;
+
+        if (_currentHealth < 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        // TODO: Implement this function
     }
 }

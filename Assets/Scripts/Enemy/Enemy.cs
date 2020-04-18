@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     private int id;
     private UnityEngine.AI.NavMeshAgent agent;
     private EnemyContainer parent;
-    private GameObject target;
 
     private bool playerAggro;
     public float playerAggroDist;
@@ -20,24 +19,16 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public float health;
     public GameObject player;
-    public float attackRange;
-    public float attackDamage;
-    private float lastAttackTime;
-    public float attackSpeed;
-    public EnemyType type;
 
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        target = parent.getTarget();
-        agent.destination = target.transform.position;
+        agent.destination = parent.getTargetPos();
         health = maxHealth;
         player = GameObject.FindWithTag("Player");
-        lastAttackTime = Time.time;
     }
 
-    public void init(EnemyContainer parent, EnemyType type) {
+    public void setParent(EnemyContainer parent) {
         this.parent = parent;
-        this.type = type;
     }
 
     public void damage(float damage) {
@@ -45,21 +36,6 @@ public class Enemy : MonoBehaviour
         if (health <= 0) {
             kill();
         }
-    }
-
-    private bool inRangeOfTarget() {
-        return Vector3.Distance(transform.position, agent.destination) < attackRange;
-    }
-
-    private void attackTarget() {
-        if (Time.time < lastAttackTime + attackSpeed) {
-            return;
-        } else if (target.tag == "Target") {
-            target.GetComponent<Heart>().damage(attackDamage);
-        } else if (target.tag == "Player") {
-            target.GetComponent<PlayerController>().Damage(attackDamage);
-        }
-        lastAttackTime = Time.time;
     }
 
     private bool switchPlayerAggro() {
@@ -73,25 +49,19 @@ public class Enemy : MonoBehaviour
     }
 
     private void kill() {
-        player.GetComponent<PlayerController>().notifyEnemyKilled(type);
         parent.removeEnemy(gameObject);
         Destroy(gameObject);
     }
 
     void Update() {
         if (playerAggro) {
-            target = player;
             agent.destination = player.transform.position;
         }
         if (switchPlayerAggro()) {
             playerAggro = !playerAggro;
             if (!playerAggro) {
-                target = parent.getTarget();
-                agent.destination = target.transform.position;
+                agent.destination = parent.getTargetPos();
             }
-        }
-        if (inRangeOfTarget()) {
-            attackTarget();
         }
     }
 }

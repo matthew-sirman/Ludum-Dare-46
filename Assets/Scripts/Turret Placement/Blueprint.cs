@@ -51,8 +51,7 @@ public class Blueprint : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !interacted)
-        {
+        if (Input.GetKeyDown(KeyCode.E) && !interacted) {
             doAction();
         }
     }

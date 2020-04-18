@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1579165619543184343}
   - component: {fileID: 57417385995972264}
-  - component: {fileID: 4795537421146827427}
   m_Layer: 0
   m_Name: TestTurret1
   m_TagString: Untagged
@@ -47,23 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 100
   sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &4795537421146827427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579165619543184342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be07672342a2ce641b57a24e302e2d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turretHP: 10
-  cooldown: 5
-  rotateSpeed: 1
-  headName: TurretGuns
-  cooldownTime: 0
 --- !u!65 &3806087583455580611
 BoxCollider:
   m_ObjectHideFlags: 0

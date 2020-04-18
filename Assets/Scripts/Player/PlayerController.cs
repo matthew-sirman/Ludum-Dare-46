@@ -11,22 +11,24 @@ public class PlayerController : MonoBehaviour
     public float jumpControlFactor = 1f;
     public Rigidbody playerRigidbody;
     public Camera playerCamera;
+
     private const float MinX = 0f;
     private const float MaxX = 360f;
     private const float MinY = -90f;
     private const float MaxY = 90f;
+
     private Vector3 _moveDir;
     private Vector2 _mousePos;
+
     private bool _isJumping = false;
     private bool _pressedJump = false;
+
     private bool _movementLocked = false;
+
     private float _currentHealth;
-    private MoneyManager moneyManager;
 
     void Start()
     {
-        moneyManager = GameObject.FindWithTag("MoneyManager").GetComponent<MoneyManager>();
-        _currentHealth = maxHealth;
         LockCursor();
     }
 
@@ -110,17 +112,12 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(float amount)
     {
-        Debug.Log(_currentHealth);
         _currentHealth -= amount;
 
         if (_currentHealth < 0)
         {
             Die();
         }
-    }
-
-    public void notifyEnemyKilled(EnemyType type) {
-        moneyManager.enemyKilled(type);
     }
 
     public void Die()

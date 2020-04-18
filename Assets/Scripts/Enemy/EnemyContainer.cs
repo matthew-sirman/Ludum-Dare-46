@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyContainer : MonoBehaviour {
     private List<GameObject> enemies;
-    public Vector3 targetPos;
+    public GameObject target;
     private Vector3 spawnPos;
     private Queue<EnemyType> spawnQueue;
     public GameObject enemyPrefab;
@@ -19,7 +19,7 @@ public class EnemyContainer : MonoBehaviour {
         spawnWave = true;
         spawnPos = new Vector3(0, 0, 50);
 
-        targetPos = GameObject.FindWithTag("Target").transform.position;
+        target = GameObject.FindWithTag("Target");
         enemies = new List<GameObject>();
         spawnQueue = new Queue<EnemyType>();
         spawnQueue.Enqueue(EnemyType.basic);
@@ -54,7 +54,7 @@ public class EnemyContainer : MonoBehaviour {
         }
     }
 
-    public Vector3 getTargetPos() {
-        return targetPos;
+    public GameObject getTarget() {
+        return target;
     }
 }

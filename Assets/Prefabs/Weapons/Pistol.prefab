@@ -4908,6 +4908,7 @@ MonoBehaviour:
   maxEffectiveDistance: 100
   clipSize: 12
   reloadTime: 2
-  fireRate: 4
+  fireRate: 5
+  autoFire: 0
   bulletExplosion: {fileID: 1833684418412687116}
   ammoInfoText: {fileID: 0}

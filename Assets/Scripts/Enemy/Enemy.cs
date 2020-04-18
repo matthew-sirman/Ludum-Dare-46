@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private int id;
     private UnityEngine.AI.NavMeshAgent agent;
     private EnemyContainer parent;
+    private GameObject target;
 
     private bool playerAggro;
     public float playerAggroDist;
@@ -19,12 +20,18 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public float health;
     public GameObject player;
+    public float attackRange;
+    public float attackDamage;
+    private float lastAttackTime;
+    public float attackSpeed;
 
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.destination = parent.getTargetPos();
+        target = parent.getTarget();
+        agent.destination = target.transform.position;
         health = maxHealth;
         player = GameObject.FindWithTag("Player");
+        lastAttackTime = Time.time;
     }
 
     public void setParent(EnemyContainer parent) {
@@ -36,6 +43,21 @@ public class Enemy : MonoBehaviour
         if (health <= 0) {
             kill();
         }
+    }
+
+    private bool inRangeOfTarget() {
+        return Vector3.Distance(transform.position, agent.destination) < attackRange;
+    }
+
+    private void attackTarget() {
+        if (Time.time < lastAttackTime + attackSpeed) {
+            return;
+        } else if (target.tag == "Target") {
+            target.GetComponent<Heart>().damage(attackDamage);
+        } else if (target.tag == "Player") {
+            target.GetComponent<PlayerController>().Damage(attackDamage);
+        }
+        lastAttackTime = Time.time;
     }
 
     private bool switchPlayerAggro() {
@@ -55,13 +77,18 @@ public class Enemy : MonoBehaviour
 
     void Update() {
         if (playerAggro) {
+            target = player;
             agent.destination = player.transform.position;
         }
         if (switchPlayerAggro()) {
             playerAggro = !playerAggro;
             if (!playerAggro) {
-                agent.destination = parent.getTargetPos();
+                target = parent.getTarget();
+                agent.destination = target.transform.position;
             }
+        }
+        if (inRangeOfTarget()) {
+            attackTarget();
         }
     }
 }

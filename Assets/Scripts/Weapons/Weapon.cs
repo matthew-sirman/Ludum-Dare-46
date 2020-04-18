@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
 
     // Shots per second
     public float fireRate = 1f;
+    public bool autoFire = false;
 
     public ParticleSystem bulletExplosion;
     
@@ -44,12 +45,25 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         ammoInfoText.text = _currentAmmo + "/" + clipSize;
-        
-        if (Input.GetMouseButtonDown(0))
+
+        if (!autoFire)
         {
-            if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0)
+            if (Input.GetMouseButtonDown(0))
             {
-                FireBullet();
+                if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0)
+                {
+                    FireBullet();
+                }
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (Time.time - _lastFired > 1.0f / fireRate && _currentAmmo > 0)
+                {
+                    FireBullet();
+                }
             }
         }
 
@@ -66,10 +80,7 @@ public class Weapon : MonoBehaviour
             StartCoroutine(ReloadGun());
         }
 
-        if (clipSize * ReloadWarningPercent > _currentAmmo)
-        {
-            
-        }
+        reloadWarningText.gameObject.SetActive(clipSize * ReloadWarningPercent > _currentAmmo);
     }
 
     private void FireBullet()

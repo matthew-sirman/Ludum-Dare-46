@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        _currentHealth = maxHealth;
         LockCursor();
     }
 
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(float amount)
     {
+        Debug.Log(_currentHealth);
         _currentHealth -= amount;
 
         if (_currentHealth < 0)

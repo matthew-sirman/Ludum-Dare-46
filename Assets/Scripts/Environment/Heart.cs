@@ -13,7 +13,6 @@ public class Heart : MonoBehaviour
     }
 
     public void damage(float damage) {
-        Debug.Log(health);
         health -= damage;
         if (health <= 0.0f) {
 

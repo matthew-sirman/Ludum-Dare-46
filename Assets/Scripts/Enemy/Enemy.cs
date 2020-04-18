@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         } else if (target.tag == "Target") {
             target.GetComponent<Heart>().damage(attackDamage);
         } else if (target.tag == "Player") {
-            //target.GetComponent<PlayerController>().damage(attackDamage);
+            target.GetComponent<PlayerController>().Damage(attackDamage);
         }
         lastAttackTime = Time.time;
     }

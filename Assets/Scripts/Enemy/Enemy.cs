@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour
     public float playerDeAggroDist;
 
     public float maxHealth;
-    private float health;
-    private GameObject player;
+    public float health;
+    public GameObject player;
 
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();

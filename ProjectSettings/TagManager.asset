@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - BuildCost
   - MoneyManager
+  - WaveManager
   layers:
   - Default
   - TransparentFX

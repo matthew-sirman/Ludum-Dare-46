@@ -37,7 +37,11 @@ public class RadialMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        radialMenu = GameObject.Find("Turret Placement UI");
+        radialMenu.SetActive(true);
         manager = FindObjectOfType<TurretManager>();
+        buildButtonText = GameObject.FindGameObjectWithTag("BuildCost").GetComponent<Text>();
+        radialMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -80,9 +84,7 @@ public class RadialMenuController : MonoBehaviour
     //CLOSE THE RADIAL MENU
     public void unactivate()
     {
-        Debug.Log(buildButtonText);
         PlayerController p = FindObjectOfType<PlayerController>();
-        Debug.Log(buildButtonText);
         buildButtonText.text = "0";
         radialMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -95,15 +97,14 @@ public class RadialMenuController : MonoBehaviour
     //CONSTRUCT THE SELECTED TURRET
     public void buildTurret()
     {
-        Debug.Log(buildButtonText);
         if (turretToBuild != null)
         {
             GameObject turret = manager.getBuilding();
+            Debug.Log(turret.GetComponent<MeshRenderer>());
             turret.GetComponent<MeshRenderer>().enabled = false;
             Destroy(turret.GetComponent<ClickTurretSpot>().getTurret());
             turret.GetComponent<ClickTurretSpot>().setTurret(Instantiate(turretToBuild, turret.transform.position, Quaternion.identity));
         }
-        Debug.Log(buildButtonText);
         unactivate();
     }
 

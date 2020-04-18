@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretManager : MonoBehaviour
 {
-    public GameObject currentlyBuilding;
+    GameObject currentlyBuilding = null;
 
     public void setBuilding(GameObject turret)
     {

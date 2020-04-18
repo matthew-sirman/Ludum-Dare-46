@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoInfoText: {fileID: 1579024984179948471}
+  reloadWarningText: {fileID: 8227520590059479394}
 --- !u!1 &1579024982984070416
 GameObject:
   m_ObjectHideFlags: 0

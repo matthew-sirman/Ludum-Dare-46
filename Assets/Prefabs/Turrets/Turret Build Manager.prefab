@@ -44,11 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdda0f47939aed48beeec2c196e33bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radialMenu: {fileID: 0}
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  button3: {fileID: 0}
-  button4: {fileID: 0}
+  radialMenu: {fileID: 8948453197599478771, guid: 6da86504b6de5c647bf13ed1be0931ad,
+    type: 3}
+  buttonParent: {fileID: 0}
+  radialButton: {fileID: 669739091785912293, guid: 220cbdb4c07133e42a9159919f385c87,
+    type: 3}
+  buttons: []
+  turrets: []
   buildButtonText: {fileID: 0}
 --- !u!114 &9116317267471581698
 MonoBehaviour:

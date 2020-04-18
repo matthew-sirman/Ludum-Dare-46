@@ -81,11 +81,11 @@ public class RadialMenuController : MonoBehaviour
     public void unactivate()
     {
         PlayerController p = FindObjectOfType<PlayerController>();
+        buildButtonText.text = "0";
         radialMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         p.GetComponent<PlayerController>().UnlockMovement();
-        buildButtonText.text = "0";
         turretToBuild = null;
         manager.getBuilding().GetComponent<ClickTurretSpot>().wasClosed();
     }

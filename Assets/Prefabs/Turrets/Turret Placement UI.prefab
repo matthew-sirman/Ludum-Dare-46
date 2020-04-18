@@ -475,7 +475,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9116317267471581696, guid: e72d455c95a70ea41ad445aecbd0da54,
+          type: 3}
         m_MethodName: buildTurret
         m_Mode: 1
         m_Arguments:

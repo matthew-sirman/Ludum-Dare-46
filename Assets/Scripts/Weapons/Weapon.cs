@@ -116,6 +116,8 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator ReloadGun()
     {
+        playerAnimator.SetTrigger("Reload");
+        
         yield return new WaitForSeconds(reloadTime);
 
         _currentAmmo = clipSize;

@@ -7,8 +7,11 @@ public class ClickTurretSpot : MonoBehaviour
 
     public GameObject currentTurret;
 
-    void OnMouseDown() 
+    bool canInteract = true;
+
+    void doAction() 
     {
+        canInteract = false;
         FindObjectOfType<TurretManager>().setBuilding(this.gameObject);
         FindObjectOfType<RadialMenuController>().activate();
     }
@@ -21,5 +24,18 @@ public class ClickTurretSpot : MonoBehaviour
     public GameObject getTurret() 
     {
         return this.currentTurret;
+    }
+
+    public void OnMouseOver()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && canInteract) 
+        {
+            doAction();
+        }
+    }
+
+    public void wasClosed() 
+    {
+        canInteract = true;
     }
 }

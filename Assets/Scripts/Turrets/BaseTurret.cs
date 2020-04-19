@@ -19,6 +19,8 @@ public class BaseTurret : MonoBehaviour
     public Animation destroyed;
     bool playing = false;
 
+    private float timeCount = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +52,12 @@ public class BaseTurret : MonoBehaviour
             float absA = Mathf.Sqrt((dist.x * dist.x) + (dist.y * dist.y));
             float absB = Mathf.Sqrt((forw.x * forw.x) + (forw.y * forw.y));
             float yVal = Mathf.Acos(Vector2.Dot(dist, forw) / (absA * absB)) * 180 / Mathf.PI;
-            turretHead.transform.rotation = Quaternion.Euler(-90, mult*yVal, 0);
+            Vector3 currentRot = new Vector3(-90, turretHead.transform.rotation.y, 0);
+            Vector3 targetRot = new Vector3(-90, mult * yVal, 0);
+            //print("Curr:" + currentRot.y);
+            // print("Next:" + targetRot.y);
+            turretHead.transform.rotation = Quaternion.Lerp(Quaternion.Euler(currentRot), Quaternion.Euler(targetRot), timeCount);
+            timeCount = timeCount + Time.deltaTime;
         }
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer <= 0) 

@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public class WaveManager : MonoBehaviour {
     private List<Dictionary<EnemyType, int>> waveComposition = new List<Dictionary<EnemyType, int>>() {
         new Dictionary<EnemyType, int>() {
-            {EnemyType.basic, 5}
+            {EnemyType.basic, 5},
+            {EnemyType.fast, 2}
         },
         new Dictionary<EnemyType, int>() {
-            {EnemyType.basic, 10}
+            {EnemyType.basic, 10},
+            {EnemyType.fast, 4},
+            {EnemyType.strong, 1}
         },
         new Dictionary<EnemyType, int>() {
-            {EnemyType.basic, 15}
+            {EnemyType.basic, 15},
+            {EnemyType.fast, 6},
+            {EnemyType.strong, 2}
         },
     };
     private List<EnemyContainer> spawners;

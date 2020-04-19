@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnemyType {
-    basic
+    basic,
+    fast,
+    strong
 }
 
 public class Enemy : MonoBehaviour
@@ -27,17 +29,16 @@ public class Enemy : MonoBehaviour
     public EnemyType type;
 
     void Start() {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        target = parent.getTarget();
-        agent.destination = target.transform.position;
-        health = maxHealth;
-        player = GameObject.FindWithTag("Player");
-        lastAttackTime = Time.time;
     }
 
     public void init(EnemyContainer parent, EnemyType type) {
         this.parent = parent;
         this.type = type;
+        this.target = this.parent.getTarget();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        player = GameObject.FindWithTag("Player");
+        lastAttackTime = Time.time;
+        agent.destination = this.target.transform.position;
     }
 
     public void damage(float damage) {

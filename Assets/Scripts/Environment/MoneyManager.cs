@@ -10,7 +10,9 @@ public class MoneyManager : MonoBehaviour
     private Text moneyText;
 
     private Dictionary<EnemyType, int> enemyKillRewards = new Dictionary<EnemyType, int>(){
-        {EnemyType.basic, 5}
+        {EnemyType.basic, 5},
+        {EnemyType.fast, 3},
+        {EnemyType.strong, 20}
     };
 
     void Start() {

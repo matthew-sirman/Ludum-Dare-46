@@ -51,7 +51,7 @@ public class WeaponController : MonoBehaviour
     {
         if (!(_equipped is null))
         {
-            GameObject.Destroy(_equipped);
+            Destroy(_equipped.gameObject);
         }
 
         _equippedIndex = weaponIndex;

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class RadialMenuController : MonoBehaviour
 {
 
-    public GameObject radialMenu;
+    GameObject radialMenu;
     public GameObject buttonParent;
 
     public GameObject radialButton;
@@ -22,17 +22,6 @@ public class RadialMenuController : MonoBehaviour
     MoneyManager mm;
     int currentCost;
 
-    //The turrets that can be built as is on the radial menu
-    /*GameObject turret1;
-    GameObject turret2;
-    GameObject turret3;
-    GameObject turret4;*/
-
-    //The buttons on the radial menu
-    /*public GameObject button1;
-    public GameObject button2;
-    public GameObject button3;
-    public GameObject button4;*/
     public Text buildButtonText;
 
 
@@ -54,7 +43,7 @@ public class RadialMenuController : MonoBehaviour
         {
             if (Input.GetButton("Cancel"))
             {
-                unactivate();
+                unactivate(true);
             }
         }
     }
@@ -67,31 +56,18 @@ public class RadialMenuController : MonoBehaviour
         p.GetComponent<PlayerController>().LockMovement();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        /*if (turret1 != null) {
-            button1.SetActive(true);
-        }
-        if (turret2 != null)
-        {
-            button2.SetActive(true);
-        }
-        if (turret3 != null)
-        {
-            button3.SetActive(true);
-        }
-        if (turret4 != null)
-        {
-            button4.SetActive(true);
-        }*/
     }
 
     //CLOSE THE RADIAL MENU
-    public void unactivate()
+    public void unactivate(bool escapeUsed = false)
     {
         PlayerController p = FindObjectOfType<PlayerController>();
         buildButtonText.text = "0";
         radialMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (!escapeUsed) 
+        { 
+            //Lock the mouse
+        }
         p.GetComponent<PlayerController>().UnlockMovement();
         turretToBuild = null;
         manager.getBuilding().GetComponent<ClickTurretSpot>().wasClosed();
@@ -152,85 +128,4 @@ public class RadialMenuController : MonoBehaviour
     {
         selectTurret(pos);
     }
-
-    //SELECT FIRST TURRET
-    /*public void selectTurretOne() 
-    {
-        if (turret1 != null) 
-        {
-            turretToBuild = turret1;
-            currentCost = turret1.GetComponent<TurretData>().getCost();
-            buildButtonText.text = turret1.GetComponent<TurretData>().getCost().ToString();
-        }
-    }
-
-    public void selectTurretTwo()
-    {
-        if (turret2 != null)
-        {
-            turretToBuild = turret2;
-            currentCost = turret2.GetComponent<TurretData>().getCost();
-            buildButtonText.text = turret2.GetComponent<TurretData>().getCost().ToString();
-        }
-    }
-
-    public void selectTurretThree()
-    {
-        if (turret3 != null)
-        {
-            turretToBuild = turret3;
-            currentCost = turret3.GetComponent<TurretData>().getCost();
-            buildButtonText.text = turret3.GetComponent<TurretData>().getCost().ToString();
-        }
-    }
-
-    public void selectTurretFour()
-    {
-        if (turret4 != null)
-        {
-            turretToBuild = turret4;
-            currentCost = turret4.GetComponent<TurretData>().getCost();
-            buildButtonText.text = turret4.GetComponent<TurretData>().getCost().ToString();
-        }
-    }*/
-
-    /*public void setTurret1(GameObject turret) 
-    {
-        turret1 = turret;
-    }
-
-    public void setTurret2(GameObject turret)
-    {
-        turret2 = turret;
-    }
-
-    public void setTurret3(GameObject turret)
-    {
-        turret3 = turret;
-    }
-
-    public void setTurret4(GameObject turret)
-    {
-        turret4 = turret;
-    }*/
-
-    /*public GameObject getButton1() 
-    {
-        return button1;
-    }
-
-    public GameObject getButton2()
-    {
-        return button2;
-    }
-
-    public GameObject getButton3()
-    {
-        return button3;
-    }
-
-    public GameObject getButton4()
-    {
-        return button4;
-    }*/
 }

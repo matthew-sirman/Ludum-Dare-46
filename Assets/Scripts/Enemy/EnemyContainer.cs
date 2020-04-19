@@ -6,9 +6,10 @@ public class EnemyContainer : MonoBehaviour {
     private List<GameObject> enemies;
     public GameObject target;
     private Queue<EnemyType> spawnQueue;
-    public GameObject enemyPrefab;
+    public GameObject basicPrefab;
+    public GameObject fastPrefab;
+    public GameObject strongPrefab;
     private WaveManager waveManager;
-
     private float spawnInterval;
     private float lastSpawnTime;
     private bool spawnWave;
@@ -26,11 +27,24 @@ public class EnemyContainer : MonoBehaviour {
     }
 
     void instantiateEnemy(EnemyType type) {
-        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        GameObject enemy = createEnemy(type);
         enemy.transform.SetParent(transform, false);
         enemy.GetComponent<Enemy>().init(this, type);
         enemies.Add(enemy);
         nActiveEnemies++;
+    }
+
+    GameObject createEnemy(EnemyType type) {
+        switch (type) {
+        case EnemyType.basic:
+            return Instantiate(basicPrefab, transform.position, Quaternion.identity);
+        case EnemyType.fast:
+            return Instantiate(fastPrefab, transform.position, Quaternion.identity);
+        case EnemyType.strong:
+            return Instantiate(strongPrefab, transform.position, Quaternion.identity);
+        default:
+            return Instantiate(basicPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     public void removeEnemy(GameObject enemy) {

@@ -6,22 +6,23 @@ using UnityEngine;
 public class BaseTurret : MonoBehaviour
 {
 
-    public int turretHP;
+    public float turretHP;
     List<GameObject> enemies;
-    List<GameObject> bulletSpawns;
-    List<GameObject> enemiesHit;
-    float cooldownTimer = Mathf.Infinity;
+    public List<GameObject> bulletSpawns;
+    public List<GameObject> enemiesHit;
+    public float cooldownTimer = 0;
     public float cooldown;
     public float rotateSpeed;
     GameObject turretHead;
     public float wpnDmg;
     Animation shootAnim;
-
+    public Animation destroyed;
+    bool playing = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cooldownTimer = cooldown;
     }
 
     // Update is called once per frame
@@ -49,13 +50,35 @@ public class BaseTurret : MonoBehaviour
             float absA = Mathf.Sqrt((dist.x * dist.x) + (dist.y * dist.y));
             float absB = Mathf.Sqrt((forw.x * forw.x) + (forw.y * forw.y));
             float yVal = Mathf.Acos(Vector2.Dot(dist, forw) / (absA * absB)) * 180 / Mathf.PI;
-            Debug.Log(yVal);
             turretHead.transform.rotation = Quaternion.Euler(-90, mult*yVal, 0);
         }
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer <= 0) 
         {
             tryToFire();
+        }
+        if (turretHP <= 0) 
+        {
+            if (destroyed != null && !playing)
+            {
+                destroyed.Play();
+                playing = true;
+            }
+            else 
+            {
+                if (destroyed == null) 
+                {
+                    FindObjectOfType<TurretManager>().destroyTurret(this.gameObject);
+                }
+            }
+            if (playing) 
+            {
+                if (!destroyed.isPlaying) 
+                {
+                    FindObjectOfType<TurretManager>().destroyTurret(this.gameObject);
+                }
+            }
+            
         }
     }
 
@@ -128,15 +151,22 @@ public class BaseTurret : MonoBehaviour
         foreach (GameObject point in bulletSpawns) 
         {
             RaycastHit hit;
-            if(Physics.Raycast(point.transform.position, point.transform.forward, out hit)) 
+            //Debug.DrawRay(point.transform.position, point.transform.up * -1, Color.red, 100f);
+            if(Physics.Raycast(point.transform.position, point.transform.up * -1, out hit)) 
             {
                 if (hit.transform.CompareTag("Enemy")) 
                 {
+                    Debug.Log("HIT: " + hit.transform.gameObject);
                     enemiesHit.Add(hit.transform.gameObject);
                     targetWithinRange = true;
                 }
             }
         }
         return targetWithinRange;
+    }
+
+    public void takeDamage(float amount) 
+    {
+        turretHP -= amount;
     }
 }

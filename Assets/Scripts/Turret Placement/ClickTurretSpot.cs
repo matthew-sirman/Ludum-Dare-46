@@ -38,4 +38,15 @@ public class ClickTurretSpot : MonoBehaviour
     {
         canInteract = true;
     }
+
+    public void turretHasBeenDestroyed() 
+    {
+        Debug.Log(currentTurret);
+        if (currentTurret == null) 
+        {
+            Debug.Log("HAS BEEN DESTROYED");
+            //It was this turret that has been destroyed
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
 }

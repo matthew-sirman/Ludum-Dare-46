@@ -178,6 +178,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cryopod
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c3a9117bae375c4fb34ae530a85a9f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     - target: {fileID: 460857468044605546, guid: 0c3a9117bae375c4fb34ae530a85a9f1,
         type: 3}
       propertyPath: m_Materials.Array.data[1]

@@ -18,16 +18,20 @@ public class Weapon : MonoBehaviour
     public bool autoFire = false;
 
     public ParticleSystem bulletExplosion;
+
+    public RuntimeAnimatorController controller;
     
     internal Animator playerAnimator;
     internal GameObject bulletSpawn;
-    public Text ammoInfoText;
+    internal Text ammoInfoText;
 
     private int _currentAmmo;
     private float _lastFired;
     private bool _reloading;
 
     private Text reloadWarningText;
+
+    private bool _weaponEnabled = true;
 
     private const float ReloadWarningPercent = 0.25f;
 
@@ -38,13 +42,25 @@ public class Weapon : MonoBehaviour
         _currentAmmo = clipSize;
 
         reloadWarningText = PlayerUIController.instance.reloadWarningText;
+
+        playerAnimator.runtimeAnimatorController = controller;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ammoInfoText.text = _currentAmmo + "/" + clipSize;
+        if (!(ammoInfoText is null))
+        {
+            ammoInfoText.text = _currentAmmo + "/" + clipSize;
+        }
 
+        reloadWarningText.gameObject.SetActive(clipSize * ReloadWarningPercent > _currentAmmo);
+
+        if (!_weaponEnabled)
+        {
+            return;
+        }
+        
         if (!autoFire)
         {
             if (Input.GetMouseButtonDown(0))
@@ -78,8 +94,6 @@ public class Weapon : MonoBehaviour
         {
             StartCoroutine(ReloadGun());
         }
-
-        reloadWarningText.gameObject.SetActive(clipSize * ReloadWarningPercent > _currentAmmo);
     }
 
     private void FireBullet()
@@ -121,5 +135,11 @@ public class Weapon : MonoBehaviour
 
         _currentAmmo = clipSize;
         _reloading = false;
+    }
+
+    public void Switch()
+    {
+        playerAnimator.SetTrigger("Switch");
+        _weaponEnabled = false;
     }
 }

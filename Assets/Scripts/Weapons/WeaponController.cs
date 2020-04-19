@@ -9,6 +9,8 @@ public class WeaponController : MonoBehaviour
     public GameObject rightHandHandle;
     public GameObject leftHandHandle;
     public GameObject bulletSpawnPoint;
+
+    public float switchSpeed = 1f;
     
     public Weapon[] weapons;
     public int startWeaponIndex = 0;
@@ -16,6 +18,7 @@ public class WeaponController : MonoBehaviour
     public Animator playerAnimator;
 
     private Weapon _equipped;
+    private int _equippedIndex;
     
     private Text _ammoInfoText;
 
@@ -30,7 +33,18 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _equipped.Switch();
+            StartCoroutine(SwitchWeapon());
+        }
+    }
+
+    IEnumerator SwitchWeapon()
+    {
+        yield return new WaitForSeconds(switchSpeed);
         
+        EquipWeapon((_equippedIndex + 1) % weapons.Length);
     }
 
     public void EquipWeapon(int weaponIndex)
@@ -39,6 +53,8 @@ public class WeaponController : MonoBehaviour
         {
             GameObject.Destroy(_equipped);
         }
+
+        _equippedIndex = weaponIndex;
 
         _equipped = Instantiate(weapons[weaponIndex], rightHandHandle.transform);
         _equipped.playerAnimator = playerAnimator;

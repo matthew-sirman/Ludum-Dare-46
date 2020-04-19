@@ -121,7 +121,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 2289a4e68bac39d4cb3ef3fa0aff45df, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b6e16d7db1e64464395569e365c391f5, type: 2}
 --- !u!1 &11426944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1332,7 @@ PrefabInstance:
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.75
+      value: -44.7
       objectReference: {fileID: 0}
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
@@ -1342,7 +1342,7 @@ PrefabInstance:
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.74
+      value: 33.8
       objectReference: {fileID: 0}
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
@@ -2942,7 +2942,7 @@ PrefabInstance:
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.59
+      value: 44.5
       objectReference: {fileID: 0}
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
@@ -2952,7 +2952,7 @@ PrefabInstance:
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.59
+      value: 35.8
       objectReference: {fileID: 0}
     - target: {fileID: 5083272970494786636, guid: 6830a028da57cc04bb8a269ca49fd2a3,
         type: 3}
@@ -3251,7 +3251,7 @@ Transform:
   m_GameObject: {fileID: 4205621725383914637}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 99.999985, z: 99.999985}
+  m_LocalScale: {x: 200, y: 200, z: 125}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8

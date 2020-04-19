@@ -43,7 +43,7 @@ public class RadialMenuController : MonoBehaviour
         {
             if (Input.GetButton("Cancel"))
             {
-                unactivate(true);
+                unactivate(); //true
             }
         }
     }
@@ -54,8 +54,7 @@ public class RadialMenuController : MonoBehaviour
         PlayerController p = FindObjectOfType<PlayerController>();
         radialMenu.SetActive(true);
         p.GetComponent<PlayerController>().LockMovement();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        p.UnlockCursor();
     }
 
     //CLOSE THE RADIAL MENU
@@ -65,8 +64,8 @@ public class RadialMenuController : MonoBehaviour
         buildButtonText.text = "0";
         radialMenu.SetActive(false);
         if (!escapeUsed) 
-        { 
-            //Lock the mouse
+        {
+            p.LockCursor();
         }
         p.GetComponent<PlayerController>().UnlockMovement();
         turretToBuild = null;

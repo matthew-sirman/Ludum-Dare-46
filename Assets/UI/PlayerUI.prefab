@@ -78,7 +78,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Wave 1
 
-    30 Seconds'
+    0 Seconds'
 --- !u!1 &1579024982811261429
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   ammoInfoText: {fileID: 1579024984179948471}
   moneyText: {fileID: 4957454431658095188}
   reloadWarningText: {fileID: 8227520590059479394}
-  nextWaveText: {fileID: 0}
+  nextWaveText: {fileID: 1404036714226358707}
 --- !u!1 &1579024982984070416
 GameObject:
   m_ObjectHideFlags: 0

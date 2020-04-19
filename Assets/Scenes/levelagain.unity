@@ -803,7 +803,7 @@ PrefabInstance:
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.452
+      value: 32.41
       objectReference: {fileID: 0}
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
@@ -1521,7 +1521,7 @@ PrefabInstance:
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.514577
+      value: -30.11
       objectReference: {fileID: 0}
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
@@ -1774,7 +1774,7 @@ PrefabInstance:
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.514577
+      value: -30.1
       objectReference: {fileID: 0}
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
@@ -1843,7 +1843,7 @@ PrefabInstance:
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.452
+      value: 32.41
       objectReference: {fileID: 0}
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
@@ -2028,7 +2028,7 @@ PrefabInstance:
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.514577
+      value: -30.1
       objectReference: {fileID: 0}
     - target: {fileID: 7238584421622082807, guid: 5f60534875a74c2499e392e9a1521f88,
         type: 3}
@@ -3251,7 +3251,7 @@ Transform:
   m_GameObject: {fileID: 4205621725383914637}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 125}
+  m_LocalScale: {x: 200, y: 200, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8

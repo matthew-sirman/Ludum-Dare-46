@@ -17,7 +17,7 @@ public class EnemyContainer : MonoBehaviour {
     void Start() {
         waveManager = GameObject.FindWithTag("WaveManager").GetComponent<WaveManager>();
         nActiveEnemies = 0;
-        spawnInterval = 2.0f;
+        spawnInterval = 0.3f;
         lastSpawnTime = -spawnInterval;
         spawnWave = true;
         target = GameObject.FindWithTag("Target");

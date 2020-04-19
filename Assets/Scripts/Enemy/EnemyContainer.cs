@@ -38,7 +38,7 @@ public class EnemyContainer : MonoBehaviour {
     public void removeEnemy(GameObject enemy) {
         enemies.Remove(enemy);
         nActiveEnemies--;
-        if (nActiveEnemies == 0) {
+        if (nActiveEnemies == 0 && spawnQueue.Count == 0) {
             waveManager.notifyWaveFinished();
         }
     }
@@ -51,7 +51,6 @@ public class EnemyContainer : MonoBehaviour {
         if (spawnQueue.Count == 0) {
             spawnWave = false;
         }
-        
     }
 
     public void setSpawnQueue(Queue<EnemyType> q) {

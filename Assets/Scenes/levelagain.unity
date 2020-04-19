@@ -2300,6 +2300,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5453605403211684168, guid: 85d34edc3a47e2245bd06ab684135c28,
+        type: 3}
+      propertyPath: timeBetweenWaves
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5453605403211684169, guid: 85d34edc3a47e2245bd06ab684135c28,
         type: 3}
       propertyPath: m_Name

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1559300686113694530}
   - component: {fileID: 6456166153870188921}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: BasicEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,8 +53,8 @@ MonoBehaviour:
   health: 0
   player: {fileID: 0}
   attackRange: 3
-  attackDamage: 4
-  attackSpeed: 0.5
+  attackDamage: 2
+  attackSpeed: 1
   type: 0
 --- !u!195 &-4854968263282540916
 NavMeshAgent:

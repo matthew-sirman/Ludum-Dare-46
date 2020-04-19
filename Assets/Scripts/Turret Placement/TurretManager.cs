@@ -20,4 +20,19 @@ public class TurretManager : MonoBehaviour
     {
         return currentlyBuilding;
     }
+
+    public void destroyTurret(GameObject turret) 
+    {
+        Destroy(turret);
+        StartCoroutine(shortWait());
+    }
+
+    IEnumerator shortWait() 
+    {
+        yield return new WaitForSeconds(0.05f);
+        foreach (ClickTurretSpot spot in GameObject.FindObjectsOfType<ClickTurretSpot>())
+        {
+            spot.turretHasBeenDestroyed();
+        }
+    }
 }

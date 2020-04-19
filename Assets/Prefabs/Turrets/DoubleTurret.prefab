@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 57417385995972264}
   - component: {fileID: 4795537421146827427}
   m_Layer: 0
-  m_Name: TestTurret1
-  m_TagString: Untagged
+  m_Name: DoubleTurret
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,11 +60,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretHP: 10
-  cooldown: 0.1
+  bulletSpawns: []
+  enemiesHit: []
+  cooldownTimer: 0
+  cooldown: 0.2
   rotateSpeed: 1
   wpnDmg: 1
   headName: TurretGuns
   childName: gun_turret
+  animation: {fileID: 0}
 --- !u!1 &3646353617632607007
 GameObject:
   m_ObjectHideFlags: 0

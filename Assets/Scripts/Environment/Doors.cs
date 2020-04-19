@@ -7,11 +7,10 @@ public class Doors : MonoBehaviour
 
     public int unlockCost;
     
-    GameObject doorBody;
     MoneyManager mm;
 
     Vector3 closedRot = new Vector3(0, 0, 0);
-    public Vector3 openRot = new Vector3(0, 90, 0);
+    public float openRot = 90;
 
     bool unlocked = false;
     bool doorOpening = false;
@@ -21,34 +20,26 @@ public class Doors : MonoBehaviour
     void Start()
     {
         mm = FindObjectOfType<MoneyManager>();
-        doorBody = transform.Find("DoorBody").gameObject;
     }
 
     private void Update()
     {
-        if (doorOpening) 
+        if (doorOpening)
         {
-            doorBody.transform.rotation = Quaternion.Slerp(Quaternion.Euler(closedRot), Quaternion.Euler(openRot), rotCount);
+            transform.rotation = Quaternion.Slerp(Quaternion.Euler(closedRot), Quaternion.Euler(0,openRot,0), rotCount);
             rotCount += Time.deltaTime;
-            if (rotCount > 5) 
+            if (rotCount > 5)
             {
                 doorOpening = false;
             }
         }
     }
 
-    private void OnMouseOver()
-    {
-        if (Input.GetKeyDown(KeyCode.E)) 
-        {
-            doAction();
-        }
-    }
-
-    void doAction() 
+    public void doAction() 
     {
         if (mm.getMoney() >= unlockCost && !unlocked)
         {
+            Debug.Log("OPEN");
             mm.subtractMoney(unlockCost);
             unlocked = true;
             doorOpening = true;
@@ -57,5 +48,15 @@ public class Doors : MonoBehaviour
         {
             Debug.Log("TOO POOR TO OPEN THE DOOR");
         }
+    }
+
+    public bool isUnlocked() 
+    {
+        return unlocked;
+    }
+
+    public int getCost() 
+    {
+        return unlockCost;
     }
 }

@@ -9,6 +9,7 @@ public class PlayerUIController : MonoBehaviour
     public Text moneyText;
     public Text reloadWarningText;
     public Text nextWaveText;
+    public Text doorPrice;
 
     public static PlayerUIController instance
     {

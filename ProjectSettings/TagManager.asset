@@ -9,6 +9,7 @@ TagManager:
   - BuildCost
   - MoneyManager
   - WaveManager
+  - BulletSpawn
   layers:
   - Default
   - TransparentFX

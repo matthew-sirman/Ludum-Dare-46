@@ -60,11 +60,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretHP: 10
-  cooldown: 5
+  cooldown: 0.1
   rotateSpeed: 1
+  wpnDmg: 1
   headName: TurretGuns
   childName: gun_turret
-  cooldownTime: 0
+--- !u!1 &3646353617632607007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7632516337349200391}
+  m_Layer: 0
+  m_Name: Spawn2
+  m_TagString: BulletSpawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7632516337349200391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646353617632607007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00248, y: -0.00457, z: 0.001229}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8618055231140731788}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6388426601553501393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1628578267165201293}
+  m_Layer: 0
+  m_Name: Spawn1
+  m_TagString: BulletSpawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1628578267165201293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388426601553501393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.002484, y: -0.00457, z: 0.001229}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8618055231140731788}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3806087583455580611
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,6 +251,12 @@ GameObject:
 --- !u!4 &4843538370366815677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 56e216d6fb95cdb4e93c30d7765902e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 454019905497962151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8618055231140731788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8202316200177208619, guid: 56e216d6fb95cdb4e93c30d7765902e5,
     type: 3}
   m_PrefabInstance: {fileID: 454019905497962151}
   m_PrefabAsset: {fileID: 0}

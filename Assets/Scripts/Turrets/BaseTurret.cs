@@ -8,11 +8,14 @@ public class BaseTurret : MonoBehaviour
 
     public int turretHP;
     List<GameObject> enemies;
+    List<GameObject> bulletSpawns;
+    List<GameObject> enemiesHit;
     float cooldownTimer = Mathf.Infinity;
-    public int cooldown;
+    public float cooldown;
     public float rotateSpeed;
     GameObject turretHead;
-    float xRot;
+    public float wpnDmg;
+    Animation shootAnim;
 
 
     // Start is called before the first frame update
@@ -48,6 +51,11 @@ public class BaseTurret : MonoBehaviour
             float yVal = Mathf.Acos(Vector2.Dot(dist, forw) / (absA * absB)) * 180 / Mathf.PI;
             Debug.Log(yVal);
             turretHead.transform.rotation = Quaternion.Euler(-90, mult*yVal, 0);
+        }
+        cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer <= 0) 
+        {
+            tryToFire();
         }
     }
 
@@ -86,6 +94,49 @@ public class BaseTurret : MonoBehaviour
     public void setTurret(GameObject head)
     {
         turretHead = head;
-        xRot = turretHead.transform.rotation.x;
+        foreach (Transform child in turretHead.transform) if (child.CompareTag("BulletSpawn")) 
+        {
+                bulletSpawns.Add(child.gameObject);
+        }
+    }
+
+    public void setAnim(Animation anim) 
+    {
+        shootAnim = anim;
+    }
+
+    void tryToFire() 
+    {
+        if (targetWithinRange()) 
+        {
+            foreach (GameObject enemy in enemiesHit) 
+            {
+                enemy.GetComponent<Enemy>().damage(wpnDmg);
+            }
+            enemiesHit = new List<GameObject>();
+            if (shootAnim != null)
+            {
+                shootAnim.Play();
+            }
+            cooldownTimer = cooldown;
+        }
+    }
+
+    bool targetWithinRange() 
+    {
+        bool targetWithinRange = false;
+        foreach (GameObject point in bulletSpawns) 
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(point.transform.position, point.transform.forward, out hit)) 
+            {
+                if (hit.transform.CompareTag("Enemy")) 
+                {
+                    enemiesHit.Add(hit.transform.gameObject);
+                    targetWithinRange = true;
+                }
+            }
+        }
+        return targetWithinRange;
     }
 }

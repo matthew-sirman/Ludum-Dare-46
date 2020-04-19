@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyContainer : MonoBehaviour {
     private List<GameObject> enemies;
     public GameObject target;
-    private Vector3 spawnPos;
     private Queue<EnemyType> spawnQueue;
     public GameObject enemyPrefab;
     private WaveManager waveManager;
@@ -21,15 +20,14 @@ public class EnemyContainer : MonoBehaviour {
         spawnInterval = 2.0f;
         lastSpawnTime = -spawnInterval;
         spawnWave = true;
-        spawnPos = new Vector3(0, 0, 50);
         target = GameObject.FindWithTag("Target");
         enemies = new List<GameObject>();
         spawnQueue = new Queue<EnemyType>();
     }
 
     void instantiateEnemy(EnemyType type) {
-        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-        enemy.transform.SetParent(transform);
+        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        enemy.transform.SetParent(transform, false);
         enemy.GetComponent<Enemy>().init(this, type);
         enemies.Add(enemy);
         nActiveEnemies++;

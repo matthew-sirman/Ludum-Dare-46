@@ -31,6 +31,12 @@ public class PlayerController : MonoBehaviour
     
     private MoneyManager moneyManager;
 
+    public bool locked
+    {
+        get => _movementLocked;
+        private set => _movementLocked = value;
+    }
+
     void Start()
     {
         moneyManager = GameObject.FindWithTag("MoneyManager").GetComponent<MoneyManager>();
@@ -40,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!_movementLocked)
+        if (!locked)
         {
             _targetMoveDir.x = Input.GetAxisRaw("Horizontal");
             _targetMoveDir.y = 0f;
@@ -66,7 +72,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel"))
         {
-            _movementLocked = !_movementLocked;
+            locked = !locked;
+
+            if (locked)
+            {
+                UnlockCursor();
+            }
+            else
+            {
+                LockCursor();
+            }
         }
     }
 
@@ -120,13 +135,13 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(_mousePos.y, 0f, 0f);
     }
 
-    private void LockCursor()
+    public void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    private void UnlockCursor()
+    public void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -134,12 +149,12 @@ public class PlayerController : MonoBehaviour
 
     public void LockMovement()
     {
-        _movementLocked = true;
+        locked = true;
     }
 
     public void UnlockMovement()
     {
-        _movementLocked = false;
+        locked = false;
     }
 
     public void Damage(float amount)

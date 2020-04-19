@@ -22,10 +22,13 @@ public class WeaponController : MonoBehaviour
     
     private Text _ammoInfoText;
 
+    private PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
         _ammoInfoText = PlayerUIController.instance.ammoInfoText;
+        playerController = GetComponent<PlayerController>();
         
         EquipWeapon(startWeaponIndex);
     }
@@ -33,7 +36,7 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !playerController.locked)
         {
             _equipped.Switch();
             StartCoroutine(SwitchWeapon());

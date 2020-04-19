@@ -35,6 +35,8 @@ public class Weapon : MonoBehaviour
 
     private const float ReloadWarningPercent = 0.25f;
 
+    private PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,8 @@ public class Weapon : MonoBehaviour
         reloadWarningText = PlayerUIController.instance.reloadWarningText;
 
         playerAnimator.runtimeAnimatorController = controller;
+
+        playerController = playerAnimator.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -56,7 +60,7 @@ public class Weapon : MonoBehaviour
 
         reloadWarningText.gameObject.SetActive(clipSize * ReloadWarningPercent > _currentAmmo);
 
-        if (!_weaponEnabled)
+        if (!_weaponEnabled || playerController.locked)
         {
             return;
         }

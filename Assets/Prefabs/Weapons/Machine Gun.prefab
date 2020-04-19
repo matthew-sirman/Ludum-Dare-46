@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fc30fafea68dc469ea6fa3db63b1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 2
+  baseDamage: 1
   falloffCurve:
     serializedVersion: 2
     m_Curve:
